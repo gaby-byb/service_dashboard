@@ -114,18 +114,18 @@ service-dashboard
 ├── .gitignore
 ├── README.md
 │
-├── frontend
+├── client
 │   ├── package.json
 │   ├── src
 │   └── node_modules
 │
-├── backend
+├── server
 │   ├── package.json
 │   ├── server.js
 │   └── node_modules
-│
-└── database
-    └── schema.sql
+│   └── database
+        └── schema.sql
+        └── seed.sql
 ```
 
 ---
@@ -184,7 +184,13 @@ createdb service_db
 Run the schema file:
 
 ```bash
-psql service_db -f database/schema.sql
+psql service_db -f server/database/schema.sql
+```
+
+Populate the database with initial records:
+
+```bash
+psql service_db < server/database/seed.sql
 ```
 
 ---
