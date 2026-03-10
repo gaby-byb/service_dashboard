@@ -1,12 +1,12 @@
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import Dashboard from "./pages/Dashboard";
+import Dashboard from "./app/dashboard/Dashboard";
 
 function App() {
   return (
-    <>
-      <div></div>
-      <Dashboard />
-    </>
+    <Routes>
+      <Route path="/dashboard" element={<Dashboard />}></Route>
+    </Routes>
   );
 }
 
