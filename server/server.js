@@ -3,6 +3,7 @@ import cors from "cors";
 
 import customerRoutes from "./routes/customers.js";
 import jobsRoutes from "./routes/jobs.js";
+import loginRoutes from "./routes/auth.js";
 
 // calls application
 const app = express();
@@ -12,6 +13,7 @@ app.use(express.json());
 
 app.use("/customers", customerRoutes);
 app.use("/jobs", jobsRoutes);
+app.use("/login", loginRoutes);
 
 app.listen(3000, () => {
   console.log("Server running on port 3000");

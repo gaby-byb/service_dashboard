@@ -16,14 +16,14 @@ import {
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 
-export function LoginForm({ className, ...props }) {
+export function LoginForm({ onSubmit, className, ...props }) {
   function handleSubmit(e) {
+    e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const data = {
       email: formData.get("email"),
       password: formData.get("password"),
     };
-    // eslint-disable-next-line no-undef
     onSubmit(data);
   }
   return (
@@ -36,7 +36,7 @@ export function LoginForm({ className, ...props }) {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form>
+          <form onSubmit={handleSubmit}>
             <FieldGroup>
               <Field>
                 <Button variant="outline" type="button">
@@ -61,42 +61,36 @@ export function LoginForm({ className, ...props }) {
               <FieldSeparator className="*:data-[slot=field-separator-content]:bg-card">
                 Or continue with
               </FieldSeparator>
-              <form onSubmit={handleSubmit}>
-                <Field>
-                  <FieldLabel htmlFor="email">Email</FieldLabel>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    placeholder="m@example.com"
-                    required
-                  />
-                </Field>
-                <Field>
-                  <div className="flex items-center">
-                    <FieldLabel htmlFor="password">Password</FieldLabel>
-                    <a
-                      href="#"
-                      className="ml-auto text-sm underline-offset-4 hover:underline"
-                    >
-                      Forgot your password?
-                    </a>
-                  </div>
-                  <Input
-                    id="password"
-                    name="password"
-                    type="password"
-                    required
-                  />
-                </Field>
-                <Field>
-                  <Button type="submit">Login</Button>
 
-                  <FieldDescription className="text-center">
-                    Don&apos;t have an account? <a href="#">Sign up</a>
-                  </FieldDescription>
-                </Field>
-              </form>
+              <Field>
+                <FieldLabel htmlFor="email">Email</FieldLabel>
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="m@example.com"
+                  required
+                />
+              </Field>
+              <Field>
+                <div className="flex items-center">
+                  <FieldLabel htmlFor="password">Password</FieldLabel>
+                  <a
+                    href="#"
+                    className="ml-auto text-sm underline-offset-4 hover:underline"
+                  >
+                    Forgot your password?
+                  </a>
+                </div>
+                <Input id="password" name="password" type="password" required />
+              </Field>
+              <Field>
+                <Button type="submit">Login</Button>
+
+                <FieldDescription className="text-center">
+                  Don&apos;t have an account? <a href="#">Sign up</a>
+                </FieldDescription>
+              </Field>
             </FieldGroup>
           </form>
         </CardContent>
