@@ -1,7 +1,8 @@
 import * as React from "react";
-
+import { Link, useLocation } from "react-router-dom";
 import { SearchForm } from "./search-form";
 import { VersionSwitcher } from "./version-switcher";
+import { CompanyHeader } from "./ui/company-header";
 import {
   Collapsible,
   CollapsibleContent,
@@ -26,136 +27,52 @@ const data = {
   versions: ["1.0.1", "1.1.0-alpha", "2.0.0-beta1"],
   navMain: [
     {
-      title: "Getting Started",
+      title: "Operations",
       url: "#",
       items: [
         {
-          title: "Installation",
-          url: "#",
+          title: "Active Jobs",
+          url: "/jobs",
         },
         {
-          title: "Project Structure",
-          url: "#",
+          title: "Schedule",
+          url: "/schedule",
+        },
+        {
+          title: "Invoices",
+          url: "/invoices",
         },
       ],
     },
     {
-      title: "Build Your Application",
+      title: "Customer Management",
       url: "#",
       items: [
         {
-          title: "Routing",
-          url: "#",
-        },
-        {
-          title: "Data Fetching",
-          url: "#",
-          isActive: true,
-        },
-        {
-          title: "Rendering",
-          url: "#",
-        },
-        {
-          title: "Caching",
-          url: "#",
-        },
-        {
-          title: "Styling",
-          url: "#",
-        },
-        {
-          title: "Optimizing",
-          url: "#",
-        },
-        {
-          title: "Configuring",
-          url: "#",
-        },
-        {
-          title: "Testing",
-          url: "#",
-        },
-        {
-          title: "Authentication",
-          url: "#",
-        },
-        {
-          title: "Deploying",
-          url: "#",
-        },
-        {
-          title: "Upgrading",
-          url: "#",
-        },
-        {
-          title: "Examples",
-          url: "#",
+          title: "Customers",
+          url: "/customers",
         },
       ],
     },
     {
-      title: "API Reference",
+      title: "Management",
       url: "#",
       items: [
-        {
-          title: "Components",
-          url: "#",
-        },
-        {
-          title: "File Conventions",
-          url: "#",
-        },
-        {
-          title: "Functions",
-          url: "#",
-        },
-        {
-          title: "next.config.js Options",
-          url: "#",
-        },
-        {
-          title: "CLI",
-          url: "#",
-        },
-        {
-          title: "Edge Runtime",
-          url: "#",
-        },
+        { title: "Employees", url: "/employees" },
+        { title: "Services Catalog", url: "/services" },
       ],
     },
+
     {
-      title: "Architecture",
+      title: "Settings",
       url: "#",
       items: [
         {
-          title: "Accessibility",
+          title: "Account",
           url: "#",
         },
         {
-          title: "Fast Refresh",
-          url: "#",
-        },
-        {
-          title: "Next.js Compiler",
-          url: "#",
-        },
-        {
-          title: "Supported Browsers",
-          url: "#",
-        },
-        {
-          title: "Turbopack",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Community",
-      url: "#",
-      items: [
-        {
-          title: "Contribution Guide",
+          title: "Logout",
           url: "#",
         },
       ],
@@ -164,13 +81,11 @@ const data = {
 };
 
 export function AppSidebar({ ...props }) {
+  const location = useLocation();
   return (
     <Sidebar {...props}>
       <SidebarHeader>
-        <VersionSwitcher
-          versions={data.versions}
-          defaultVersion={data.versions[0]}
-        />
+        <CompanyHeader />
         <SearchForm />
       </SidebarHeader>
       <SidebarContent className="gap-0">
@@ -197,8 +112,11 @@ export function AppSidebar({ ...props }) {
                   <SidebarMenu>
                     {item.items.map((item) => (
                       <SidebarMenuItem key={item.title}>
-                        <SidebarMenuButton asChild isActive={item.isActive}>
-                          <a href={item.url}>{item.title}</a>
+                        <SidebarMenuButton
+                          asChild
+                          isActive={location.pathname === item.url}
+                        >
+                          <Link to={item.url}>{item.title}</Link>
                         </SidebarMenuButton>
                       </SidebarMenuItem>
                     ))}
