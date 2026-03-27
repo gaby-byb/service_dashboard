@@ -16,9 +16,11 @@ import {
 import { ModeToggle } from "@/components/mode-toggle";
 
 export default function Page() {
+  const employee = JSON.parse(localStorage.getItem("employee"));
+  console.log(employee);
   return (
     <SidebarProvider>
-      <AppSidebar />
+      <AppSidebar employee={employee} />
       <SidebarInset>
         <header className="sticky top-0 flex h-16 shrink-0 items-center gap-2 border-b bg-background px-4">
           <SidebarTrigger className="-ml-1" />

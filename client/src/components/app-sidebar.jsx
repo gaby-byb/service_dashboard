@@ -2,7 +2,7 @@ import * as React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { SearchForm } from "./search-form";
 import { VersionSwitcher } from "./version-switcher";
-import { CompanyHeader } from "./ui/company-header";
+import { CompanyHeader } from "./company-header";
 import {
   Collapsible,
   CollapsibleContent,
@@ -24,7 +24,6 @@ import { ChevronRightIcon } from "lucide-react";
 
 // This is sample data.
 const data = {
-  versions: ["1.0.1", "1.1.0-alpha", "2.0.0-beta1"],
   navMain: [
     {
       title: "Operations",
@@ -80,12 +79,12 @@ const data = {
   ],
 };
 
-export function AppSidebar({ ...props }) {
+export function AppSidebar({ employee, ...props }) {
   const location = useLocation();
   return (
     <Sidebar {...props}>
       <SidebarHeader>
-        <CompanyHeader />
+        <CompanyHeader employee={employee} />
         <SearchForm />
       </SidebarHeader>
       <SidebarContent className="gap-0">

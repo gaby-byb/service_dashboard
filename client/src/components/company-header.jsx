@@ -5,7 +5,7 @@ import {
 } from "@/components/ui/sidebar";
 import * as React from "react";
 
-export function CompanyHeader() {
+export function CompanyHeader({ employee }) {
   return (
     <SidebarHeader>
       <SidebarMenu>
@@ -13,12 +13,12 @@ export function CompanyHeader() {
           <div className="flex items-center gap-2 px-2 py-1.5">
             <div className="flex items-center gap-2 px-2 py-1.5 overflow-hidden">
               {/* Logo Container - fixed width/height for the square icon */}
-              <div className="flex items-center justify-center size-8 shrink-0 rounded-lg bg-green-900 text-white font-bold text-lg">
-                H
+              <div className="flex items-center justify-center size-10 shrink-0 rounded-lg bg-green-900 text-white font-bold text-lg">
+                HQS
               </div>
             </div>
             <div className="grid flex-1 text-left text-sm leading-tight">
-              <span className="truncate font-semibold">Service LLC</span>
+              <span className="truncate font-semibold">{employee?.name}</span>
               <span className="truncate text-xs text-sidebar-foreground/70">
                 Dashboard
               </span>
