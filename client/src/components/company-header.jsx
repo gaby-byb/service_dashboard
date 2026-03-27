@@ -13,7 +13,7 @@ export function CompanyHeader({ employee }) {
           <div className="flex items-center gap-2 px-2 py-1.5">
             <div className="flex items-center gap-2 px-2 py-1.5 overflow-hidden">
               {/* Logo Container - fixed width/height for the square icon */}
-              <div className="flex items-center justify-center size-10 shrink-0 rounded-lg bg-green-900 text-white font-bold text-lg">
+              <div className="flex items-center justify-center size-11 shrink-0 rounded-lg bg-green-900 text-white font-semibold text-md">
                 HQS
               </div>
             </div>

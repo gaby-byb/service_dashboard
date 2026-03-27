@@ -20,7 +20,7 @@ import {
   SidebarMenuItem,
   SidebarRail,
 } from "@/components/ui/sidebar";
-import { ChevronRightIcon } from "lucide-react";
+import { ChevronRightIcon, LogOut } from "lucide-react";
 
 // This is sample data.
 const data = {
@@ -32,14 +32,17 @@ const data = {
         {
           title: "Active Jobs",
           url: "/jobs",
+          type: "link",
         },
         {
           title: "Schedule",
           url: "/schedule",
+          type: "link",
         },
         {
           title: "Invoices",
           url: "/invoices",
+          type: "link",
         },
       ],
     },
@@ -50,6 +53,7 @@ const data = {
         {
           title: "Customers",
           url: "/customers",
+          type: "link",
         },
       ],
     },
@@ -57,8 +61,8 @@ const data = {
       title: "Management",
       url: "#",
       items: [
-        { title: "Employees", url: "/employees" },
-        { title: "Services Catalog", url: "/services" },
+        { title: "Employees", url: "/employees", type: "link" },
+        { title: "Services Catalog", url: "/services", type: "link" },
       ],
     },
 
@@ -69,14 +73,24 @@ const data = {
         {
           title: "Account",
           url: "#",
+          type: "link",
         },
         {
           title: "Logout",
-          url: "#",
+          actionKey: "logout",
+          type: "action",
         },
       ],
     },
   ],
+};
+
+const actions = {
+  //anonymous arrow function used as method
+  logout: () => {
+    localStorage.removeItem("token");
+    window.location.href = "/";
+  },
 };
 
 export function AppSidebar({ employee, ...props }) {
@@ -111,12 +125,18 @@ export function AppSidebar({ employee, ...props }) {
                   <SidebarMenu>
                     {item.items.map((item) => (
                       <SidebarMenuItem key={item.title}>
-                        <SidebarMenuButton
-                          asChild
-                          isActive={location.pathname === item.url}
-                        >
-                          <Link to={item.url}>{item.title}</Link>
-                        </SidebarMenuButton>
+                        {item.type === "action" ? (
+                          <SidebarMenuButton onClick={actions[item.actionKey]}>
+                            {item.title}
+                          </SidebarMenuButton>
+                        ) : (
+                          <SidebarMenuButton
+                            asChild
+                            isActive={location.pathname === item.url}
+                          >
+                            <Link to={item.url}>{item.title}</Link>
+                          </SidebarMenuButton>
+                        )}
                       </SidebarMenuItem>
                     ))}
                   </SidebarMenu>
