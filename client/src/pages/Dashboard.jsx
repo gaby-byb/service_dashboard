@@ -18,6 +18,7 @@ import { ModeToggle } from "@/components/mode-toggle";
 export default function Page() {
   const employee = JSON.parse(localStorage.getItem("employee"));
   console.log(employee);
+
   return (
     <SidebarProvider>
       <AppSidebar employee={employee} />
