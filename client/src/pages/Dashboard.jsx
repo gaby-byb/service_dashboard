@@ -14,7 +14,7 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { ModeToggle } from "@/components/mode-toggle";
-
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 export default function Page() {
   const employee = JSON.parse(localStorage.getItem("employee"));
   console.log(employee);
@@ -39,13 +39,20 @@ export default function Page() {
           </Breadcrumb>
           <ModeToggle />
         </header>
+
         <div className="flex flex-1 flex-col gap-4 p-4">
-          {Array.from({ length: 24 }).map((_, index) => (
-            <div
-              key={index}
-              className="aspect-video h-12 w-full rounded-lg bg-muted/50"
-            />
-          ))}
+          <Card>
+            <CardHeader>
+              <CardTitle>
+                <h1>Welcome, {employee?.name || "Employee"}</h1>
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-muted-foreground">
+                Here's your schedule for the day.
+              </p>
+            </CardContent>
+          </Card>
         </div>
       </SidebarInset>
     </SidebarProvider>
