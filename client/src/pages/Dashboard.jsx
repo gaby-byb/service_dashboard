@@ -1,4 +1,6 @@
 import { AppSidebar } from "@/components/app-sidebar";
+import { ScheduleTable } from "@/components/schedule-table";
+import { InvoiceTable } from "@/components/invoice-table";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -15,6 +17,7 @@ import {
 } from "@/components/ui/sidebar";
 import { ModeToggle } from "@/components/mode-toggle";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+
 export default function Page() {
   const employee = JSON.parse(localStorage.getItem("employee"));
   console.log(employee);
@@ -47,12 +50,28 @@ export default function Page() {
                 <h1>Welcome, {employee?.name || "Employee"}</h1>
               </CardTitle>
             </CardHeader>
-            <CardContent>
-              <p className="text-muted-foreground">
-                Here's your schedule for the day.
-              </p>
-            </CardContent>
           </Card>
+
+          <div className="grid gap-4 md:grid-cols-2">
+            <Card>
+              <CardHeader>
+                <CardTitle>
+                  <h1>Current Jobs</h1>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ScheduleTable />
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle>Recent Invoices</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <InvoiceTable />
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </SidebarInset>
     </SidebarProvider>
