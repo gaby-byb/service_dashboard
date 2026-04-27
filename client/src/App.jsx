@@ -1,15 +1,22 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
+import Invoices from "./pages/Invoices";
 import { ThemeProvider } from "@/components/theme-provider"; // Ensure this path is correct
 import "./App.css";
+import DashboardLayout from "./components/dashboard-layout";
+
 function App() {
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+
+          <Route element={<DashboardLayout />}>
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/invoices" element={<Invoices />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
