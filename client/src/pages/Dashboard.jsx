@@ -1,4 +1,3 @@
-import { AppSidebar } from "@/components/app-sidebar";
 import { ScheduleTable } from "@/components/schedule-table";
 import { InvoiceTable } from "@/components/invoice-table";
 

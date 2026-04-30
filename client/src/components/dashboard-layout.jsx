@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/sidebar";
 import { AppSidebar } from "./app-sidebar";
 import { ModeToggle } from "@/components/mode-toggle";
+
 export default function DashboardLayout() {
   const employee = JSON.parse(localStorage.getItem("employee"));
   console.log(employee);
