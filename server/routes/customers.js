@@ -27,7 +27,7 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const result = await pool.query("SELECT * WHERE id=$1 FROM customers", [
+    const result = await pool.query("SELECT * FROM customers WHERE id=$1", [
       id,
     ]);
     res.json(result.rows[0]);
@@ -47,6 +47,7 @@ router.post("/", async (req, res) => {
     );
     res.json(result.rows[0]);
   } catch (error) {
+    console.log(error);
     res.status(500).send("POST database error");
   }
 });

@@ -1,11 +1,11 @@
 import express from "express";
 import pool from "../database/Database.js";
 
-// GET    /employess
-// GET    /employess/:id
-// POST   /employess
-// PUT    /employess/:id
-// DELETE /employess/:id
+// GET    /employees
+// GET    /employees/:id
+// POST   /employees
+// PUT    /employees/:id
+// DELETE /employees/:id
 
 const router = express.Router();
 
@@ -26,7 +26,7 @@ router.get("/", async (req, res) => {
 router.get("/:id", async (req, res) => {
   try {
     const { id } = req.params;
-    const result = await pool.query("SELECT * WHERE id=$1 FROM employees", [
+    const result = await pool.query("SELECT * FROM employees WHERE id=$1 ", [
       id,
     ]);
     res.json(result.rows);
@@ -38,13 +38,14 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    const { name, phone, email } = req.body;
+    const { name, phone, email, password } = req.body;
     const result = await pool.query(
-      "INSERT INTO employees (name, phone, email) VALUES $1, $2, $3"[
-        (name, phone, email)
-      ],
+      "INSERT INTO employees (name, phone, email, password) VALUES ($1, $2, $3, $4) RETURNING *",
+      [name, phone, email, password],
     );
+    res.json(result.rows[0]);
   } catch (error) {
+    console.log(error);
     res.status(500).send("POST database error");
   }
 });
@@ -52,11 +53,12 @@ router.post("/", async (req, res) => {
 //PUT /employees/:id
 router.put("/:id", async (req, res) => {
   try {
-    const { name, phone, email } = req.body;
+    const { name, phone, email, password } = req.body;
     const { id } = req.params;
 
     const result = await pool.query(
-      "UPDATE employees set name=$1, phone=$2, email=$3"[(name, phone, email)],
+      "UPDATE employees set name=$1, phone=$2, email=$3, password=$4 WHERE id=$5 RETURNING *",
+      [name, phone, email, password, id],
     );
     res.json(result.rows[0]);
   } catch (error) {
