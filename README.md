@@ -2,131 +2,57 @@
 
 ## Overview
 
-This project is a full-stack web application designed to support the day-to-day operations of a service-based business. The system provides a centralized dashboard for managing customers, jobs, employees, services, and invoices.
+# Service Business Dashboard
 
-The application replaces manual workflows such as spreadsheets, text messages, and paper schedules with a structured digital system. It allows users to track job assignments, schedule services, and maintain organized customer and operational data.
+Full-stack business management dashboard built for a small field-service company to manage customers, jobs, invoices, employees, scheduling, and service tracking.
 
-The goal of the project is to demonstrate full-stack system design, including relational database modeling, REST API development, and frontend data integration.
-
----
+The application was designed to replace fragmented workflows such as paper schedules, spreadsheets, and text-message coordination with a centralized web platform.
 
 ## Features
 
 - Customer management
 - Job scheduling and tracking
-- Service catalog management
-- Employee assignment to jobs
-- Invoice tracking
-- Relational database design for operational data
-- REST API backend for data access
-
----
+- Invoice creation and payment tracking
+- Employee-to-job assignment
+- Service assignment and pricing
+- Relational PostgreSQL database design
+- REST API with Express.js
+- Frontend dashboard built with React
 
 ## Tech Stack
 
 ### Frontend
 
 - React
-- Axios
 - Vite
+- Tailwind CSS
+- shadcn/ui
+- React Router
 
 ### Backend
 
 - Node.js
-- Express
-
-### Database
-
+- Express.js
 - PostgreSQL
+- pg
 
-### Tools
+## Database Concepts
 
-- Git
-- Postico (database client)
+This project uses relational database modeling with:
 
----
+- One-to-many relationships
+- Many-to-many relationships
+- Join tables (`job_employees`, `job_services`)
+- Foreign key constraints
+- RESTful CRUD operations
 
-## System Architecture
+## Future Improvements
 
-The application follows a standard full-stack architecture.
-
-```
-Client (React Frontend)
-        ↓
-REST API (Express Backend)
-        ↓
-PostgreSQL Database
-```
-
-The frontend communicates with the backend through HTTP requests. The backend processes these requests, interacts with the PostgreSQL database, and returns JSON responses.
-
----
-
-## Database Design
-
-The system uses a normalized relational schema to represent business entities.
-
-Core tables:
-
-- `customers`
-- `jobs`
-- `services`
-- `employees`
-- `invoices`
-
-Join tables:
-
-- `job_services`
-- `job_employees`
-
-Lookup tables:
-
-- `job_status`
-
----
-
-## API Structure
-
-The backend exposes REST-style endpoints for accessing application data.
-
-Example endpoints:
-
-```
-GET    /api/jobs
-POST   /api/jobs
-
-GET    /api/customers
-POST   /api/customers
-
-GET    /api/services
-GET    /api/employees
-```
-
-All endpoints return JSON responses consumed by the frontend.
-
----
-
-## Project Structure
-
-```
-service-dashboard
-│
-├── .gitignore
-├── README.md
-│
-├── client
-│   ├── package.json
-│   ├── src
-│   └── node_modules
-│
-├── server
-│   ├── package.json
-│   ├── server.js
-│   └── node_modules
-│   └── database
-        └── schema.sql
-        └── seed.sql
-```
+- Authentication and role permissions
+- Expense/material tracking
+- File uploads for invoices/photos
+- Dashboard analytics
+- Email/SMS notifications
 
 ---
 
@@ -192,15 +118,5 @@ Populate the database with initial records:
 ```bash
 psql service_db < server/database/seed.sql
 ```
-
----
-
-## Future Improvements
-
-- Authentication and role-based access control
-- Invoice generation and payment tracking
-- Job scheduling calendar
-- Reporting and analytics dashboard
-- Cloud deployment
 
 ---
