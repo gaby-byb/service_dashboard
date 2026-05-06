@@ -13,6 +13,15 @@ router.get("/", async (req, res) => {
   }
 });
 // GET    /jobs/:id
+router.get("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+    const result = await pool.query("SELECT * FROM jobs WHERE id=$1", [id]);
+    res.json(result.rows);
+  } catch (error) {
+    res.status(500).send("Server error");
+  }
+});
 
 // POST   /jobs
 router.post("/", async (req, res) => {
