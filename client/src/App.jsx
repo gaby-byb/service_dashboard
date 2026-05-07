@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
+import Jobs from "./pages/Jobs";
 import Dashboard from "./pages/Dashboard";
 import Invoices from "./pages/Invoices";
 import { ThemeProvider } from "@/components/theme-provider"; // Ensure this path is correct
@@ -16,6 +17,7 @@ function App() {
           <Route element={<DashboardLayout />}>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/invoices" element={<Invoices />} />
+            <Route path="/jobs" element={<Jobs />} />
           </Route>
         </Routes>
       </BrowserRouter>
