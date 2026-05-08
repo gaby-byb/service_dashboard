@@ -89,7 +89,7 @@ const actions = {
   //anonymous arrow function used as method
   logout: () => {
     localStorage.removeItem("token");
-    window.location.href = "/";
+    window.location.href = "/login";
   },
 };
 

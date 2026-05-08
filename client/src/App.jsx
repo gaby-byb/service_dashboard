@@ -12,10 +12,10 @@ function App() {
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Login />} />
+          <Route path="/login" element={<Login />} />
 
           <Route element={<DashboardLayout />}>
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/" element={<Dashboard />} />
             <Route path="/invoices" element={<Invoices />} />
             <Route path="/jobs" element={<Jobs />} />
           </Route>
