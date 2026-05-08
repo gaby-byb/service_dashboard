@@ -1,12 +1,4 @@
 import { Outlet } from "react-router-dom";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
 import { Separator } from "@/components/ui/separator";
 import {
   SidebarInset,
@@ -15,6 +7,7 @@ import {
 } from "@/components/ui/sidebar";
 import { AppSidebar } from "./app-sidebar";
 import { ModeToggle } from "@/components/mode-toggle";
+import Header from "./ui/header";
 
 export default function DashboardLayout() {
   const employee = JSON.parse(localStorage.getItem("employee"));
@@ -24,22 +17,10 @@ export default function DashboardLayout() {
       <SidebarProvider>
         <AppSidebar employee={employee} />
         <SidebarInset>
+          <Header />
           <header className="sticky top-0 flex h-16 shrink-0 items-center gap-2 border-b bg-background px-4">
             <SidebarTrigger className="-ml-1" />
             <Separator orientation="vertical" className="mr-2 h-4" />
-            <Breadcrumb>
-              <BreadcrumbList>
-                <BreadcrumbItem className="hidden md:block">
-                  <BreadcrumbLink href="#">
-                    Build Your Application
-                  </BreadcrumbLink>
-                </BreadcrumbItem>
-                <BreadcrumbSeparator className="hidden md:block" />
-                <BreadcrumbItem>
-                  <BreadcrumbPage>Data Fetching</BreadcrumbPage>
-                </BreadcrumbItem>
-              </BreadcrumbList>
-            </Breadcrumb>
             <ModeToggle />
           </header>
           <main className="flex flex-1 flex-col gap-4 p-4">
