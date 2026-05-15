@@ -14,12 +14,12 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use("/customers", customerRoutes);
-app.use("/jobs", jobsRoutes);
-app.use("/login", loginRoutes);
-app.use("/employees", employeesRoutes);
-app.use("/services", servicesRoutes);
-app.use("/invoices", invoicesRoutes);
+app.use("/api/customers", customerRoutes);
+app.use("/api/jobs", jobsRoutes);
+app.use("/api/login", loginRoutes);
+app.use("/api/employees", employeesRoutes);
+app.use("/api/services", servicesRoutes);
+app.use("/api/invoices", invoicesRoutes);
 
 app.listen(3000, () => {
   console.log("Server running on port 3000");

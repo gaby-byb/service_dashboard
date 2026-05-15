@@ -62,7 +62,7 @@ import {
 //   },
 // ];
 
-export default function JobsTable({ jobs = [] }) {
+export default function JobsTable({ jobs }) {
   return (
     <Table>
       <TableCaption>A list of your recent jobs.</TableCaption>
