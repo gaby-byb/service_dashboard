@@ -6,9 +6,64 @@ const router = express.Router();
 // GET    /jobs
 router.get("/", async (req, res) => {
   try {
-    const result = await pool.query("SELECT * FROM jobs");
+    const result = await pool.query(`
+            SELECT
+        jobs.id,
+        customers.name AS customer,
+        jobs.scheduled_date,
+        job_status.name AS status,
+        jobs.notes,
+
+        COALESCE(
+          json_agg(
+            DISTINCT jsonb_build_object(
+              'id', services.id,
+              'name', services.name,
+              'price', job_services.price
+            )
+          ) FILTER (WHERE services.id IS NOT NULL),
+          '[]'
+        ) AS services,
+
+        COALESCE(
+          json_agg(
+            DISTINCT jsonb_build_object(
+              'id', employees.id,
+              'name', employees.name
+            )
+          ) FILTER (WHERE employees.id IS NOT NULL),
+          '[]'
+        ) AS employees
+
+      FROM jobs
+      JOIN customers
+        ON jobs.customer_id = customers.id
+      JOIN job_status
+        ON jobs.status = job_status.id
+
+      LEFT JOIN job_services
+        ON jobs.id = job_services.job_id
+      LEFT JOIN services
+        ON job_services.service_id = services.id
+
+      LEFT JOIN job_employees
+        ON jobs.id = job_employees.job_id
+      LEFT JOIN employees
+        ON job_employees.employee_id = employees.id
+
+      GROUP BY
+        jobs.id,
+        customers.name,
+        jobs.scheduled_date,
+        job_status.name,
+        jobs.notes
+
+      ORDER BY jobs.scheduled_date;
+      
+      `);
     res.json(result.rows);
   } catch (error) {
+    console.log(error);
     res.status(500).send("Server error");
   }
 });
