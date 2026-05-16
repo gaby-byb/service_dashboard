@@ -82,7 +82,9 @@ export default function JobsTable({ jobs }) {
           <TableRow key={job.id}>
             <TableCell>{job.id}</TableCell>
             <TableCell>{job.customer}</TableCell>
-            <TableCell>{job.scheduled_date}</TableCell>
+            <TableCell>
+              {new Date(job.scheduled_date).toLocaleDateString()}
+            </TableCell>
             <TableCell>{job.status}</TableCell>
             <TableCell>{job.notes}</TableCell>
 
