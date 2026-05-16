@@ -3,6 +3,7 @@ import Login from "./pages/Login";
 import Jobs from "./pages/Jobs";
 import Dashboard from "./pages/Dashboard";
 import Invoices from "./pages/Invoices";
+import Employees from "./pages/Employees";
 import { ThemeProvider } from "@/components/theme-provider"; // Ensure this path is correct
 import "./App.css";
 import DashboardLayout from "./components/dashboard-layout";
@@ -18,6 +19,7 @@ function App() {
             <Route path="/" element={<Dashboard />} />
             <Route path="/invoices" element={<Invoices />} />
             <Route path="/jobs" element={<Jobs />} />
+            <Route path="/employees" element={<Employees />} />
           </Route>
         </Routes>
       </BrowserRouter>

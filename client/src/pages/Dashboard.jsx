@@ -31,9 +31,7 @@ export default function Page() {
           <CardHeader>
             <CardTitle>Recent Invoices</CardTitle>
           </CardHeader>
-          <CardContent>
-            <InvoiceTable />
-          </CardContent>
+          <CardContent></CardContent>
         </Card>
       </div>
     </div>

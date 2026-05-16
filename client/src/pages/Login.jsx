@@ -9,12 +9,12 @@ export default function Login() {
   async function handleLogin(data) {
     try {
       //Send data to the backend using an HTTP POST request.
-      const res = await axios.post("http://localhost:3000/login", data);
+      const res = await axios.post("/api/login", data);
       //log the response "success"
 
       if (res.data.success) {
         localStorage.setItem("employee", JSON.stringify(res.data.employee));
-        navigate("/dashboard");
+        navigate("/");
       }
     } catch (error) {
       console.error("Login failed", error);
